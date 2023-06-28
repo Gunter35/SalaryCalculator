@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SalaryCalculator.Infrastructure;
 
-namespace SalaryCalculator.Core
+namespace SalaryCalculator.Core.Models
 {
     public class AddEmployeeViewModel
     {
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public decimal GrossSalary { get; set; }
+
+        public int TaxYearId { get; set; }
+
+        public IEnumerable<TaxYear> TaxYears { get; set; } = new List<TaxYear>();
     }
 }
