@@ -1,0 +1,50 @@
+﻿@using SalaryCalculator.Core.Models
+@model AddEmployeeViewModel
+
+@{
+    ViewBag.Title = "Add Employee";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.FirstName" class="form-label">FirstName</label>
+                <input asp-for="@Model.FirstName" class="form-control" aria-required="true" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LastName" class="form-label">LastName</label>
+                <input asp-for="@Model.LastName" class="form-control" aria-required="true" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.GrossSalary" class="form-label">GrossSalary</label>
+                <input asp-for="@Model.GrossSalary" class="form-control" value="" />
+                <span asp-validation-for="GrossSalary" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.TaxYearId" class="form-label">TaxYear</label>
+                <select asp-for="@Model.TaxYearId" class="form-control">
+                    @foreach (var year in Model.TaxYears)
+                    {
+                        <option value="@year.Id">@year.Year</option>
+                    }
+                </select>
+                <span asp-validation-for="TaxYearId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Add" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

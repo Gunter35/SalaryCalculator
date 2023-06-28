@@ -1,0 +1,40 @@
+﻿@using SalaryCalculator.Core.Models
+@model IEnumerable<EmployeeViewModel>
+
+@{
+    ViewBag.Title = "All Employees";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<form style="display: flex; justify-content: center;"class="input-group-sm" asp-controller="Employee" asp-action="Add" method="get">
+    <input type="submit" value="Add" class="fs-6 btn btn-success mb-3 p-2" />
+</form>
+<form style="display: flex; justify-content: center;"class="input-group-sm" asp-controller="Employee" asp-action="AddYear" method="get">
+    <input type="submit" value="AddYear" class="fs-6 btn btn-success mb-3 p-2" />
+</form>
+<hr />
+
+<div class="text-center row">
+    @foreach (var employee in Model)
+    {
+        @Html.HiddenFor(e => employee.Id)
+        <div class="card col-4" style="width: 20rem;">
+            <div class="card-body">
+                <p class="mb-0">First Name: @employee.FirstName</p>
+                <p class="mb-0">Last Name: @employee.LastName</p>
+                <p class="mb-0">Gross Salary: @employee.GrossSalary</p>
+                <p class="mb-0">Net Salary: @employee.NetSalary</p>
+                <p class="mb-0">Tax Year: @employee.TaxYear</p>
+                <button class="btn btn-danger" onclick="deleteEmployee(@employee.Id)">Delete</button>
+            </div>            
+        </div>
+    }
+    <script>
+    function deleteEmployee(employeeId) {
+        if (confirm("Are you sure?")) {
+            window.location.href = '/Employee/Delete/' + employeeId;
+        }
+    }
+</script>
+</div>
